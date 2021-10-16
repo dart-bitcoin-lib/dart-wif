@@ -1,3 +1,7 @@
+## 1.0.2
+
+- update pubspec.yaml description
+
 ## 1.0.1
 
 - update readme header
