@@ -1,5 +1,5 @@
 name: dart_wif
-description: Bitcoin Wallet Import Format encoding/decoding module.
+description: Dart Bitcoin Wallet Import Format encoding/decoding package.
 version: 1.0.1
 homepage: https://github.com/dart-bitcoin-lib/dart-wif
 
