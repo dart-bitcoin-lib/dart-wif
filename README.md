@@ -1,4 +1,4 @@
-# WIF
+# DART WIF
 
 Bitcoin Wallet Import Format encoding/decoding module.
 
