@@ -1,4 +1,3 @@
-
 import 'package:convert/convert.dart';
 import 'package:dart_wif/dart_wif.dart';
 import 'package:test/test.dart';
