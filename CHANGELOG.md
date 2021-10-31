@@ -1,3 +1,7 @@
+## 1.0.3
+
+- update dart_bs58check package
+
 ## 1.0.2
 
 - update pubspec.yaml description
