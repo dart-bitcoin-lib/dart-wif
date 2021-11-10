@@ -11,12 +11,15 @@ import 'package:convert/convert.dart';
 import 'package:dart_wif/dart_wif.dart';
 
 void main() {
-  Uint8List privateKey = Uint8List.fromList(hex.decode('0000000000000000000000000000000000000000000000000000000000000001'));
-  String key = Wif(version: 128, privateKey:privateKey, compressed: true).encode(); // for the testnet use: Wif.encode(239, ...
+  Uint8List privateKey = Uint8List.fromList(hex.decode(
+      '0000000000000000000000000000000000000000000000000000000000000001'));
+  final WIF decoded =
+      WIF(version: 128, privateKey: privateKey, compressed: true);
+  String key = wif.encode(decoded); // for the testnet use: Wif.encode(239, ...
   print(key);
   // => KwDiBf89QgGbjEhKnhXJuH7LrciVrZi3qYjgd9M7rFU73sVHnoWn
 
-  var obj = Wif.decode(key);
+  var obj = wif.decode(key);
 
   print(obj);
   // => {
@@ -25,9 +28,12 @@ void main() {
   //	compressed: true
   //}
 
-   Wif.decode(key, 0x09);
-  // => Error: Invalid network version
-
+  try {
+    wif.decode(key, 0x09);
+  } catch (e) {
+    print(e);
+  }
+  // => Invalid argument(s): Invalid network version
 }
 ```
 

@@ -10,30 +10,30 @@ void main() {
       test(
           'encode/encodeRaw returns ${fixture.wif!} for ${fixture.privateKeyHex!.substring(0, 20)}... (${fixture.version!.toString()})',
           () {
-        String actual = Wif(
-                version: fixture.version!,
-                privateKey: fixture.privateKey!,
-                compressed: fixture.compressed!)
-            .encode();
+        final WIF decoded = WIF(
+            version: fixture.version!,
+            privateKey: fixture.privateKey!,
+            compressed: fixture.compressed!);
+        String actual = wif.encode(decoded);
         expect(actual, equals(fixture.wif));
       });
       test(
           'decode/decodeRaw returns ${fixture.privateKeyHex!.substring(0, 20)}... (${fixture.version!}) for ${fixture.wif!}',
           () {
-        Wif actual = Wif.decode(fixture.wif!, fixture.version);
+        WIF actual = wif.decode(fixture.wif!, fixture.version);
         expect(actual.version, equals(fixture.version));
         expect(hex.encode(actual.privateKey), equals(fixture.privateKeyHex));
         expect(actual.compressed, equals(fixture.compressed));
       });
 
       test('decode/encode for ${fixture.wif}', () {
-        Wif actual = Wif.decode(
-            Wif(
-                    version: fixture.version!,
-                    privateKey: fixture.privateKey!,
-                    compressed: fixture.compressed!)
-                .encode(),
-            fixture.version);
+        final decoded = WIF(
+            version: fixture.version!,
+            privateKey: fixture.privateKey!,
+            compressed: fixture.compressed!);
+        final encoded = wif.encode(decoded);
+
+        WIF actual = wif.decode(encoded, fixture.version);
 
         expect(actual, equals(actual));
       });
@@ -42,9 +42,9 @@ void main() {
   if (fixtures.containsKey(FixtureEnum.invalidDecode)) {
     for (Fixture fixture in fixtures[FixtureEnum.invalidDecode]!) {
       test("throws ${fixture.exception} for ${fixture.wif}", () {
-        Wif? buffer;
+        WIF? buffer;
         try {
-          buffer = Wif.decode(fixture.wif!, fixture.version);
+          buffer = wif.decode(fixture.wif!, fixture.version);
         } catch (err) {
           expect((err as ArgumentError).message, fixture.exception);
         } finally {
@@ -57,10 +57,11 @@ void main() {
     for (Fixture fixture in fixtures[FixtureEnum.invalidEncode]!) {
       test("throws ${fixture.exception} for ${fixture.privateKeyHex}", () {
         String? buffer;
+        final WIF decoded =
+            WIF(privateKey: fixture.privateKey!, version: fixture.version!);
+
         try {
-          buffer =
-              Wif(privateKey: fixture.privateKey!, version: fixture.version!)
-                  .encode();
+          buffer = wif.encode(decoded);
         } catch (err) {
           expect((err as ArgumentError).message, fixture.exception);
         } finally {

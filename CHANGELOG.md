@@ -1,3 +1,7 @@
+## 2.0.0
+
+- update for Codec and Converters
+
 ## 1.1.0
 
 - update dart_bs58check package

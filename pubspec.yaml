@@ -1,17 +1,17 @@
 name: dart_wif
 description: Dart Bitcoin Wallet Import Format encoding/decoding package.
-version: 1.1.0
+version: 2.0.0
 homepage: https://github.com/dart-bitcoin-lib/dart-wif
+repository: https://github.com/dart-bitcoin-lib/dart-wif
+issue_tracker: https://github.com/dart-bitcoin-lib/dart-wif/issues
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
 
-
 dependencies:
   dart_bs58check: ^1.1.0
-  convert: ^3.0.1
-
 
 dev_dependencies:
+  convert: ^3.0.1
   lints: ^1.0.0
   test: ^1.16.0
