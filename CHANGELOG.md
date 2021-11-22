@@ -1,3 +1,7 @@
+## 2.1.1
+
+- update dart_bs58check package version
+
 ## 2.1.0
 
 - update dart_bs58check package
